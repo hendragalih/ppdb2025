@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Formulir PPDB MI Al Fatah 2025</title>
+</head>
+<body>
+<h2>Formulir Pendaftaran PPDB MI Al Fatah 1 Temboro 2025</h2>
+<form id="ppdbForm">
+<label>Nama Lengkap Siswa:</label><br />
+<input type="text" name="namaLengkap" required><br /><br />
+<label>Tempat Tanggal Lahir:</label><br />
+<input type="text" name="tempatTanggalLahir" required><br /><br />
+<label>Jenis Kelamin:</label><br />
+<select name="jenisKelamin" required>
+<option value="">Pilih...</option>
+<option value="Laki-laki">Laki-laki</option>
+<option value="Perempuan">Perempuan</option>
+</select><br /><br />
+<label>Asal TK/RA:</label><br />
+<input type="text" name="asalTK" required><br /><br />
+<label>Nama Orang Tua:</label><br />
+<input type="text" name="namaOrangTua" required><br /><br />
+<label>Nomor HP:</label><br />
+<input type="tel" name="nomorHP" required><br /><br />
+<label>Alamat Lengkap:</label><br />
+<textarea name="alamatLengkap" required></textarea><br /><br />
+<button type="submit">Daftar Sekarang</button>
+</form>
+<script>
+const form = document.getElementById('ppdbForm');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('Formulir berhasil dikirim (simulasi).');
+});
+</script>
+</body>
+</html>
