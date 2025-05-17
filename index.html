@@ -1,40 +1,95 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Formulir PPDB MI Al Fatah 2025</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+  form { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 30px; max-width: 600px; margin: auto; }
+  label { font-weight: bold; display: block; margin-top: 10px; }
+  input, textarea, select { width: 100%; padding: 8px; margin-top: 4px; }
+  button { margin-top: 15px; padding: 10px 15px; background: green; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; margin-top: 30px; background: white; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+  th { background: #eee; }
+</style>
 </head>
 <body>
-<h2>Formulir Pendaftaran PPDB MI Al Fatah 1 Temboro 2025</h2>
+
+<h2 style="text-align:center;">Formulir Pendaftaran PPDB MI Al Fatah 1 Temboro 2025</h2>
+
 <form id="ppdbForm">
-<label>Nama Lengkap Siswa:</label><br />
-<input type="text" name="namaLengkap" required><br /><br />
-<label>Tempat Tanggal Lahir:</label><br />
-<input type="text" name="tempatTanggalLahir" required><br /><br />
-<label>Jenis Kelamin:</label><br />
-<select name="jenisKelamin" required>
-<option value="">Pilih...</option>
-<option value="Laki-laki">Laki-laki</option>
-<option value="Perempuan">Perempuan</option>
-</select><br /><br />
-<label>Asal TK/RA:</label><br />
-<input type="text" name="asalTK" required><br /><br />
-<label>Nama Orang Tua:</label><br />
-<input type="text" name="namaOrangTua" required><br /><br />
-<label>Nomor HP:</label><br />
-<input type="tel" name="nomorHP" required><br /><br />
-<label>Alamat Lengkap:</label><br />
-<textarea name="alamatLengkap" required></textarea><br /><br />
-<button type="submit">Daftar Sekarang</button>
+  <label>Nama Lengkap Siswa:</label>
+  <input type="text" name="namaLengkap" required>
+
+  <label>Tempat Tanggal Lahir:</label>
+  <input type="text" name="tempatTanggalLahir" required>
+
+  <label>Jenis Kelamin:</label>
+  <select name="jenisKelamin" required>
+    <option value="">Pilih...</option>
+    <option value="Laki-laki">Laki-laki</option>
+    <option value="Perempuan">Perempuan</option>
+  </select>
+
+  <label>Asal TK/RA:</label>
+  <input type="text" name="asalTK" required>
+
+  <label>Nama Orang Tua:</label>
+  <input type="text" name="namaOrangTua" required>
+
+  <label>Nomor HP:</label>
+  <input type="tel" name="nomorHP" required>
+
+  <label>Alamat Lengkap:</label>
+  <textarea name="alamatLengkap" required></textarea>
+
+  <button type="submit">Daftar Sekarang</button>
 </form>
+
+<h3 style="text-align:center;">Daftar Pendaftar</h3>
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>JK</th>
+      <th>Asal TK</th>
+      <th>Orang Tua</th>
+      <th>No HP</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
 <script>
+// Simulasi kirim formulir
 const form = document.getElementById('ppdbForm');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   alert('Formulir berhasil dikirim (simulasi).');
 });
+
+// Tampilkan daftar pendaftar
+fetch('https://script.google.com/macros/s/AKfycbwXBoXq7Vcu105XlwG2Rb4Un8rj1bQk5sL8cqHtcg217pbIi-H7fwQQ2vtm396RZnrGaQ/exec') // Ganti dengan URL Web App kamu
+  .then(res => res.json())
+  .then(data => {
+    const tbody = document.querySelector('#dataTable tbody');
+    data.forEach(item => {
+      const row = `<tr>
+        <td>${item['Nama Lengkap'] || '-'}</td>
+        <td>${item['Jenis Kelamin'] || '-'}</td>
+        <td>${item['Asal TK'] || '-'}</td>
+        <td>${item['Nama Orang Tua'] || '-'}</td>
+        <td>${item['Nomor HP'] || '-'}</td>
+      </tr>`;
+      tbody.innerHTML += row;
+    });
+  })
+  .catch(error => {
+    console.error('Gagal memuat data:', error);
+  });
 </script>
+
 </body>
 </html>
