@@ -1,27 +1,43 @@
-<script>
-const form = document.getElementById('ppdbForm');
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
-
-  fetch("https://script.google.com/macros/s/AKfycbwxtVq7CY5-h5CaFe0dk3Ugl4ikcTstJ1Lt_tFbRUbp/dev", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daftar Pendaftar - MI Al Fatah 1 Temboro 2025</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
     }
-  })
-  .then(res => res.json())
-  .then(response => {
-    if (response.result === "success") {
-      alert("Formulir berhasil dikirim!");
-      form.reset();
-    } else {
-      alert("Gagal mengirim: " + response.error);
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
     }
-  })
-  .catch(err => alert("Terjadi kesalahan: " + err));
-});
-</script>
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <h2>Daftar Pendaftar MI Al Fatah 1 Temboro 2025</h2>
+  <div id="tableContainer">Memuat data...</div>
+
+  <script>
+    fetch("https://script.google.com/macros/s/AKfycbwUhwMJQs0LTLhMKy-WDrRE7DuL7SxjAsM3c_BdLtF6s_JzKeopkHUZkZf8rZtn7Vrp/exec")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("tableContainer").innerHTML = html;
+      })
+      .catch(err => {
+        document.getElementById("tableContainer").innerHTML = "Gagal memuat data.";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
